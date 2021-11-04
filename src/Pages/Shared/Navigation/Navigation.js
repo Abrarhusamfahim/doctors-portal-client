@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 const Navigation = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -25,7 +25,8 @@ const Navigation = () => {
             News
           </Typography>
           <Link to="/appointment"><Button color="inherit">Appointment</Button></Link>
-          <Button color="inherit">Login</Button>
+          <NavLink to="/login"><Button color="inherit">Login</Button></NavLink>
+          
         </Toolbar>
       </AppBar>
     </Box>
