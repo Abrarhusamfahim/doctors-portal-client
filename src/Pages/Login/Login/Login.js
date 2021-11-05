@@ -5,7 +5,7 @@ import useAuth from '../../../hooks/useAuth';
 import login from '../../../images/login.png';
 const Login = () => {
     const [loginData, setLoginData] = useState({})
-    const { LoginUser, isLoading, user, error} = useAuth()
+    const { LoginUser, isLoading, user, error, googleWithSignIn} = useAuth()
     const location = useLocation();
     const history = useHistory();
     const handleOnChange = e =>{
@@ -18,6 +18,10 @@ const Login = () => {
     const handleLoginSubmit = e =>{
         LoginUser(loginData.email, loginData.password, history, location)
         e.preventDefault();
+    }
+    //handle google sign in 
+    const handleGoogleSignIn = () =>{
+        googleWithSignIn(location, history)
     }
     return (
         <Container>
@@ -35,6 +39,8 @@ const Login = () => {
                         <Button variant="text">New User? Please Register</Button>
                     </NavLink>
               </form>}
+              <p>----------------------------</p>
+              <Button onClick={handleGoogleSignIn} variant="contained">Google Sign In</Button>
 
               {isLoading && <CircularProgress />}
               {user.email && <Alert severity="success">User Login Successfully!</Alert>}
