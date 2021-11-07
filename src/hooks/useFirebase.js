@@ -8,7 +8,8 @@ const useFirebase = () => {
     const googleProvider = new GoogleAuthProvider();
     const [user, setUser] = useState({});
     const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true);
+    const [admin, setAdmin] = useState(false);
 
     //register user
     const registerUser = (email, password,name, history) => {
@@ -102,6 +103,12 @@ const useFirebase = () => {
             body: JSON.stringify(user)
         })
     }
+    // user admin update
+    useEffect(()=>{
+        fetch(`http://localhost:5000/users/${user.email}`)
+        .then(res => res.json())
+        .then(data => setAdmin(data.admin))
+    },[user.email])
     return {
         user,
         registerUser,
@@ -109,7 +116,8 @@ const useFirebase = () => {
         LoginUser,
         googleWithSignIn,
         isLoading,
-        error
+        error,
+        admin
     }
 };
 
