@@ -43,6 +43,7 @@ const BookingModal = ({openBooking, handleBookingClose, booking, date, setBookin
       serviceName: name,
       date: date.toLocaleDateString()
     }
+    //---------------------------------------//
     //send data to server
     fetch('http://localhost:5000/appointments',{
       method: 'POST',
